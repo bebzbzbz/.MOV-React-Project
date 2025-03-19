@@ -1,2 +1,30 @@
 @import "tailwindcss";
+
 /* @plugin "daisyui"; */
+
+
+:root {
+    --main-red: #FC2121;
+    --yellow: #FFD500;
+    --light-grey: #FBF8FF;
+    --medium-grey: #A4A3A3;
+    --blue-grey: #97AABD;
+}
+
+@font-face {
+    font-family: "Poppins Regular";
+    src: url("/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: "Poppins Bold";
+    src: url("/fonts/Poppins-Bold.ttf");
+}
+
+body {
+    font-family: "Poppins Regular";
+}
+
+h1, h2, h3, nav {
+    font-family: "Poppins Bold";
+}
+
