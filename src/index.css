@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+/* @plugin "daisyui"; */
+
 
 :root {
     --main-red: #FC2121;
@@ -25,3 +27,4 @@ body {
 h1, h2, h3, nav {
     font-family: "Poppins Bold";
 }
+
