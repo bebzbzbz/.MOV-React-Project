@@ -11,7 +11,7 @@ interface IButtonProps {
 const Button = ({name, link, backGroundColor, size,}: IButtonProps) => {
     return ( 
         <Link className={`${backGroundColor} ${size} rounded-lg flex items-center justify-center text-white`} to={link}>{name}</Link>
-     );
+    );
 }
- 
+
 export default Button;
