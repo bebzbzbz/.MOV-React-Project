@@ -4,6 +4,7 @@ import Intro from "./pages/Intro"
 import Home from "./pages/Home"
 import AllMovies from "./pages/AllMovies"
 import GenreList from "./pages/GenreList"
+import MovieDetail from "./pages/MovieDetail"
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path="/home" element={<Home/>}/>
       <Route path="/movies" element={<AllMovies/>}/>
       <Route path="/:genreID" element={<GenreList/>}/>
+      <Route path="/moviedetail" element={<MovieDetail/>}/>
     </Route>
   ))
 
