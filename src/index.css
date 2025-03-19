@@ -3,12 +3,12 @@
 /* @plugin "daisyui"; */
 
 
-:root {
-    --main-red: #FC2121;
-    --yellow: #FFD500;
-    --light-grey: #FBF8FF;
-    --medium-grey: #A4A3A3;
-    --blue-grey: #97AABD;
+@theme {
+    --color-main-red: #FC2121;
+    --color-yellow: #FFD500;
+    --color-light-grey: #FBF8FF;
+    --color-medium-grey: #A4A3A3;
+    --color-blue-grey: #97AABD;
 }
 
 @font-face {

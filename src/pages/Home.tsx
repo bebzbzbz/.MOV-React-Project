@@ -11,7 +11,7 @@ const Home = () => {
         <article>
             <div className="flex flex-row justify-between items-center">
                 <p className="font-bold text-xl">Trending Movies</p>
-                <Link to={""} className="text-red-500">See all</Link>
+                <Link to={""} className="text-main-red">See all</Link>
             </div>
         </article>
         </section>
