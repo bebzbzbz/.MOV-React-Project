@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { mainContext } from "../context/MainProvider";
 import { ISingleMovie } from "../interfaces/interfaces";
 import SearchBar from "../components/SearchBar";
+import MovieItem from "../components/MovieItem";
 
 const GenreList = () => {
 
@@ -41,16 +42,14 @@ const GenreList = () => {
             }
         }
         fetchData()
-    }, [])
+    }, [genreID])
 
     console.log(movieDataListFromGenres);
 
     return ( 
         <section className="p-5">
         <SearchBar position="top-11"/>
-        {movieDataListFromGenres && movieDataListFromGenres.map((movie: ISingleMovie)=> (
-            <div key={crypto.randomUUID()}>{movie.original_title}</div>
-        ))}
+        {movieDataListFromGenres && movieDataListFromGenres.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
         </section>
      );
 }
