@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
 import { IGenre } from "../interfaces/interfaces";
+import axios from "axios";
 
 interface ISearchProps {
     position: string
@@ -9,9 +10,33 @@ interface ISearchProps {
 
 const SearchBar = ({position}: ISearchProps) => {
 
-const {movieGenreList} = useContext(mainContext) as any
+    const {movieGenreList, setMovieGenreList} = useContext(mainContext) as any
 
-console.log(movieGenreList);
+    const options = {
+        method: 'GET',
+        url: 'https://api.themoviedb.org/3/genre/movie/list',
+        params: {language: 'en'},
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWIwODQ2MTQwZDgwZjlmZjczYmQyYjc4ZGZjNWQzYSIsIm5iZiI6MTc0MjM3NTg0Mi4yMDQsInN1YiI6IjY3ZGE4YmEyMTc0MWVkMWYwMWExZmE2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ihQAnLonY4TU4czAzLNOzASC_X972m1NJE-E2faZrQo'
+        }
+    };
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.request(options)
+
+                if(response) {
+                    setMovieGenreList(response.data.genres)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData()
+    }, [])
+
     return ( 
         <section className="flex flex-col gap-5 pb-20">
             <div className="">
