@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
+import { IButtonProps } from "../interfaces/interfaces";
 
-interface IButtonProps {
-    name: string,
-    // onClickFunction: () => void
-    link: string,
-    backGroundColor: string,
-    size: string
-}
 
 const Button = ({name, link, backGroundColor, size,}: IButtonProps) => {
     return ( 
