@@ -2,6 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Layout from "./layout/Layout"
 import Intro from "./pages/Intro"
 import Home from "./pages/Home"
+import AllMovies from "./pages/AllMovies"
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <Route path="/" element={<Layout/>}>
       <Route index element={<Intro/>}/>
       <Route path="/home" element={<Home/>}/>
+      <Route path="/movies" element={<AllMovies/>}/>
     </Route>
   ))
 

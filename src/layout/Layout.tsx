@@ -12,7 +12,7 @@ const Layout = () => {
         <Outlet/>
         {!hideNav && <Nav/>}
         </>
-     );
+    );
 }
- 
+
 export default Layout;
