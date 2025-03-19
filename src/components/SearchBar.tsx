@@ -24,7 +24,7 @@ console.log(movieGenreList);
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/home/${genre.name.toLowerCase()}`}/>
+                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/${genre.id}`}/>
             })}
 
 
