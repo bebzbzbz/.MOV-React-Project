@@ -48,7 +48,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
                                 <p>{movieItem.popularity}</p>
                             </div>
                             <p>
-                                ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0].name} ● {movieItem.runtime}
+                                ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0]?.name} ● {movieItem.runtime}
                             </p>
                         </div>
                     </article>
