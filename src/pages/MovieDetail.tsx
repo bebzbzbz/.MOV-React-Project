@@ -1,11 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IMovieDetails } from "../interfaces/interfaces";
-import MovieItem from "../components/MovieItem";
 
 const MovieDetail = () => {
     const {movieParam} = useParams();
+    const navigate = useNavigate();
+
+    let [showOverview, setShowOverview] = useState<boolean>(false)
+    const toggleOverview = () => {
+        setShowOverview(!showOverview);
+    }
 
     const [movieItem, setMovieItem] = useState<IMovieDetails>();
 
@@ -25,7 +30,6 @@ const MovieDetail = () => {
                 const response = await axios.request(options)
 
                 if(response) {
-                    console.log(response.data)
                     setMovieItem(response.data)
                 }
             } catch (error) {
@@ -35,50 +39,54 @@ const MovieDetail = () => {
         fetchData()
     }, [])
 
-    console.log(movieItem)
-
     return ( 
         <>
             {movieItem && <>
-                <div className="absolute h-120 -z-10">
-                    <div className="relative">
-                        <img className="h-120 w-screen object-cover" src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt="" />
-                        <div className="bg-linear-to-t from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen"></div>
-                    </div>
+            <div onClick={()=> navigate(-1)} className="bg-white absolute top-5 left-5 cursor-pointer h-10 w-10 flex rounded-full p-1.5">
+                <img src="/images/arrowBack.svg" alt="Back Arrow" />
+            </div>
+            <div className="absolute h-120 -z-10">
+                <div className="relative">
+                    <img className="h-120 w-screen object-cover" src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt="" />
+                    <div className="bg-linear-to-t from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen"></div>
                 </div>
-            <section className="pt-100 p-5">
-                <article className="flex flex-col items-center pb-5">
-                    <p className="text-sm pb-1">Movie Details</p>
-                    <h1 className="text-2xl pb-1 text-center">{movieItem.title}</h1>
-                    <ul className="flex gap-3 ">
+            </div>
+            <section className="pt-100 px-5">
+                <article className="flex flex-col items-center mb-5">
+                    <p className="text-sm mb-1">Movie Details</p>
+                    <h1 className="text-2xl mb-1 text-center">{movieItem.title}</h1>
+                    <ul className="flex flex-wrap justify-center gap-2 ">
                         <li>⭐️ {movieItem.vote_average}</li>
                         <li>● {movieItem.release_date}</li>
                         <li>● {movieItem.genres[0]?.name}</li>
                         <li>● {movieItem.runtime} min</li>
                     </ul>
                 </article>
-                <article className="pb-5">
-                    <h2 className="pb-3 text-lg">Overview</h2>
-                    <p>{movieItem.overview}</p>
+                <article className="mb-5">
+                    <h2 className="mb-3 text-lg">Overview</h2>
+                    <p>{movieItem.overview.length > 110 && !showOverview ?
+                    movieItem.overview.slice(0,110) + "..."
+                    : movieItem.overview}
+                    <a onClick={toggleOverview} className="text-main-red">{showOverview ? " See less..." : " See more..."}</a>
+                    </p>
                 </article>
-                <article className="flex flex-col gap-3 pb-3">
+                <article className="flex flex-col gap-3 mb-5">
                     <div className="flex flex-row gap-5 justify-between">
                         <h3>Genres</h3>
-                        <ul className="flex flex-wrap justify-end gap-2">{movieItem.genres && movieItem.genres.map((genre) => (<li>{genre.name}</li>))}</ul>
+                        <ul className="flex flex-wrap justify-end gap-2">{movieItem.genres && movieItem.genres.map((genre) => (<li key={crypto.randomUUID()}>{genre.name}</li>))}</ul>
                     </div>
                     <div className="flex flex-row justify-between">
                         <h3>Languages</h3>
-                        <ul className="flex gap-2">{movieItem.spoken_languages.map((language) => (<li>{language.english_name}</li>))}</ul>
+                        <ul className="flex gap-2">{movieItem.spoken_languages.map((language) => (<li key={crypto.randomUUID()}>{language.english_name}</li>))}</ul>
                     </div>
                 </article>
                 <div className="flex justify-center items-center">
-                    <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="pr-5" src="/images/Polygon 4.png" alt="Play-Button" />Watch Trailer</button>
+                    <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
                 </div>
             </section>
+            </>
+            }
         </>
-        }
-        </>
-        
     );
 }
 

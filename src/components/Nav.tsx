@@ -6,9 +6,9 @@ const Nav = () => {
 
     return ( 
         <nav className="flex justify-between items-center px-12 py-8 fixed bottom-0 left-0
-         right-0 bg-white">
+         right-0 bg-white text-medium-grey">
             <Link to="/home" className={`flex gap-3 text-sm items-center ${homeActive && "text-main-red"}`}>
-                <img src="/images/homeIcon.svg" alt="Home Icon" />
+                <img src="/images/homeIcon.svg" alt="Home Icon" className={`${!homeActive && "grayscale"} ${!homeActive && "opacity-50"}`} />
                 Home
             </Link>
             <Link to="/home">
