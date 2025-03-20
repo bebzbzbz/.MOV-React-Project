@@ -49,7 +49,7 @@ const SearchBar = ({position}: ISearchProps) => {
     }, [])
 
     return ( 
-        <section className="flex flex-col gap-5 pb-20">
+        <section className="flex flex-col gap-5 pb-10">
             <div className="">
                 <input type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..."/>
                     <img
