@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { IMovieDetails } from "../interfaces/interfaces";
+import { IMovieDetails, MovieItemProps } from "../interfaces/interfaces";
 import { Link } from "react-router-dom";
 
-interface MovieItemProps {
-    movieID: number
-}
-
 const MovieItem = ({movieID}:MovieItemProps) => {
+
+    //useState für den einzelnen Film
     const [movieItem, setMovieItem] = useState<IMovieDetails>();
 
+    //fetch Block für einzelnen Movie mit entsprechender ID
     const options = {
         method: 'GET',
         url: `https://api.themoviedb.org/3/movie/${movieID}`,
@@ -36,26 +35,30 @@ const MovieItem = ({movieID}:MovieItemProps) => {
         fetchData()
     }, [])
 
+    //einzelne Daten aus obigem Fetch rendern
     return ( 
         <>
             {movieItem &&
-                (<div className="grid grid-cols-2">
-                    <Link to={`/${movieID}`}>
-                        <img src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt={movieItem.title} />
-                    </Link>
-                    <article>
-                        <h3>{movieItem.title}</h3>
-                        <div>
-                            <div>
-                                <img src="/images/star.svg" alt="" />
-                                <p>{movieItem.popularity}</p>
+                (<Link to={`/${movieID}`} className="flex gap-10 pb-5 items-center">
+                    <div className="flex-1">
+                        <img className="rounded-lg" src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt={movieItem.title} />
+                    </div>
+                    <article className="flex-5">
+                        <div className="flex justify-between pb-2">
+                        <h3>{movieItem.title.split(' ').slice(0, 4).join(' ')}<br />
+                        {movieItem.title.split(' ').slice(4).join(' ')}</h3>
+                        <img src="/images/saveIcon.svg" alt="SaveIcon" />
+                        </div>
+                        <div className="flex gap-1 flex-wrap">
+                            <div className="flex gap-1">
+                                <img className="w-5" src="/images/star.svg" alt="star" />
+                                <h2>{movieItem.popularity}</h2>
                             </div>
-                            <p>
-                                ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0]?.name} ● {movieItem.runtime}
+                            <p> ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0]?.name} ● {movieItem.runtime > 0 ? `${movieItem.runtime} mins` : "keine Angabe"}
                             </p>
                         </div>
                     </article>
-                </div>)
+                </Link>)
             }
         </>
     );

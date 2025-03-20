@@ -1,17 +1,14 @@
 export interface IButtonProps {
     name: string,
-    onClickFunction?: () => void
     link: string,
     backGroundColor?: string,
     style?: string
 }
 
-
 export interface IGenre {
     id: number,
     name: string
 }
-
 
 export interface ISingleMovie {
     adult: boolean,
@@ -67,4 +64,8 @@ export interface IMovieDetails {
     video: boolean
     vote_average: number
     vote_count: number
+}
+
+export interface MovieItemProps {
+    movieID: number
 }
