@@ -47,7 +47,7 @@ const GenreList = () => {
     console.log(movieDataListFromGenres);
 
     return ( 
-        <section className="p-5">
+        <section className="p-5 pb-25">
         <SearchBar position="top-11"/>
         {movieDataListFromGenres && movieDataListFromGenres.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
         </section>

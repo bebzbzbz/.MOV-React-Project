@@ -41,7 +41,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
             {movieItem &&
                 (<Link to={`/${movieID}`} className="flex gap-10 pb-5 items-center">
                     <div className="flex-1">
-                        <img className="rounded-lg" src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt={movieItem.title} />
+                        <img className="rounded-lg" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
                     </div>
                     <article className="flex-5">
                         <div className="flex justify-between pb-2">
@@ -52,7 +52,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
                         <div className="flex gap-1 flex-wrap">
                             <div className="flex gap-1">
                                 <img className="w-5" src="/images/star.svg" alt="star" />
-                                <h2>{movieItem.popularity}</h2>
+                                <h2>{movieItem.vote_average}</h2>
                             </div>
                             <p> ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0]?.name} ● {movieItem.runtime > 0 ? `${movieItem.runtime} mins` : "keine Angabe"}
                             </p>

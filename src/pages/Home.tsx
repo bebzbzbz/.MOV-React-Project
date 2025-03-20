@@ -3,7 +3,7 @@ import SearchBar from "../components/SearchBar";
 
 const Home = () => {
     return ( 
-        <section className="p-5">
+        <section className="p-5 pb-25">
         <h1 className="text-4xl font-bold pb-10">Welcome!</h1>
         <SearchBar position="top-31"/>
         <article>
