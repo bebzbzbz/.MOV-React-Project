@@ -7,11 +7,11 @@ const Intro = () => {
             {/* <SplashScreen/> */}
             <section className="flex flex-col md:flex-row md:items-center h-screen justify-between">
                 <div className="relative  overflow-hidden h-[60vh] md:h-screen w-full bg-[url('../../public/images/IntroApp.png')] bg-cover bg-center">
-                <div className="absolute z-10 -rotate-5 left-6 top-30">
-                <img className="w-2/3  rounded-xl" src="../../public/images/iPhone-13-PRO-localhost (1).png" alt="Screenshot einer Seite" />
+                <div className="absolute z-10 -rotate-5 left-6 top-28">
+                <img className="w-2/3  rounded-xl" src="../../public/images/Sariri.png" alt="Screenshot einer Seite" />
                 </div>
                 <div className="absolute z-20 rotate-4 -right-25 top-15">
-                <img className="w-2/3 rounded-xl" src="../../public/images/iPhone-14-Plus-localhost.png" alt="Screenshot einer Seite" />
+                <img className="w-2/3 rounded-xl" src="../../public/images/Cat.png" alt="Screenshot einer Seite" />
                 </div>
                 </div>
                 <article className="flex flex-col items-center justify-between text-center pt-8 pb-12 px-7 h-70">
