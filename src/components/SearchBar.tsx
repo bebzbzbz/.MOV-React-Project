@@ -59,9 +59,9 @@ const SearchBar = ({position}: ISearchProps) => {
                 />
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
-                <Button name="All movies" link="/movies" backGroundColor={moviePage ? "bg-main-red" : ""}/>
+                <Button name="All movies" link="/movies" backGroundColor={moviePage ? "toggle" : ""}/>
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreID) === genre?.id ? "bg-main-red" : ""}/>
+                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreID) === genre?.id ? "toggle" : ""}/>
             })}
 
 

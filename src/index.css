@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* @plugin "daisyui"; */
+@plugin "daisyui" {
+    themes: false;
+  }
 
 
 @theme {
@@ -32,19 +34,19 @@ h1, h2, h3, nav, .splashscreen {
 /* animation vom splashscreen */
 @keyframes slideDown {
     0% {
-        top: -100%; /* Anfang: Div außerhalb des Bildschirms oben */
+        top: -100%;
     }
     30% {
-        top: 0; /* Das Div ist noch unterwegs nach unten */
+        top: 0;
     }
     50% {
-        top: 0; /* Das Div ist vollständig sichtbar */
+        top: 0;
     }
     70% {
-        top: 0; /* Es bleibt länger sichtbar, um es auf dem Bildschirm zu halten */
+        top: 0; 
     }
     100% {
-        top: 100%; /* Ende: Div verschwindet nach unten */
+        top: 100%; 
     }
 }
 
@@ -55,17 +57,23 @@ h1, h2, h3, nav, .splashscreen {
 /* Animation für p-tag innerhalb des splashscreen */
 @keyframes scaleUp {
     0% {
-        transform: scale(1); /* Anfang: Normale Größe */
+        transform: scale(1);
     }
     50% {
-        transform: scale(2); /* Mitte: Skalierung auf 1.5x */
+        transform: scale(2); 
     }
     100% {
-        transform: scale(1); /* Ende: Zurück zur normalen Größe */
+        transform: scale(1); 
     }
 }
 
 .scaled-text {
     animation: scaleUp 1.5s ease-in-out forwards;
     animation-delay: 2s;
+}
+
+/* toggle Klasse für Genre Buttons */
+.toggle {
+    background-color: #FC2121;
+    color: white;
 }
