@@ -20,7 +20,7 @@ function App() {
   ))
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-25">
   <RouterProvider router={router}/>
     </main>
   )
