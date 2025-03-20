@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IMovieDetails } from "../interfaces/interfaces";
+import { Link } from "react-router-dom";
 
 interface MovieItemProps {
     movieID: number
@@ -39,7 +40,9 @@ const MovieItem = ({movieID}:MovieItemProps) => {
         <>
             {movieItem &&
                 (<div className="grid grid-cols-2">
-                    <img src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt={movieItem.title} />
+                    <Link to={`/${movieID}`}>
+                        <img src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt={movieItem.title} />
+                    </Link>
                     <article>
                         <h3>{movieItem.title}</h3>
                         <div>

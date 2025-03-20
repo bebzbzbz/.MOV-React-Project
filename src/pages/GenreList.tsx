@@ -9,7 +9,7 @@ import MovieItem from "../components/MovieItem";
 const GenreList = () => {
 
     const {genreID} = useParams()
-    console.log(genreID);
+    console.log("genre list", genreID)
 
     const {movieDataListFromGenres, setMovieDataListFromGenres} = useContext(mainContext) as any
 

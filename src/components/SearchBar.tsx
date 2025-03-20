@@ -50,7 +50,7 @@ const SearchBar = ({position}: ISearchProps) => {
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
                 <Button name="All movies" link="/movies"/>
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/${genre.id}`}/>
+                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`}/>
             })}
 
 
