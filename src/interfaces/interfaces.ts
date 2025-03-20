@@ -1,9 +1,9 @@
 export interface IButtonProps {
     name: string,
-    // onClickFunction: () => void
+    onClickFunction?: () => void
     link: string,
     backGroundColor?: string,
-    size?: string
+    style?: string
 }
 
 

@@ -1,7 +1,7 @@
 const SplashScreen = () => {
     return (  
-        <div className="h-screen flex justify-center items-center bg-main-red">
-            <h1 className="text-white font-bold text-5xl">.MOV</h1>
+        <div className="splashscreen h-screen flex justify-center items-center bg-main-red intro-slide fixed top-[-100%] z-10 w-full">
+            <p className="text-white font-bold text-5xl scaled-text">.MOV</p>
         </div>
     );
 }
