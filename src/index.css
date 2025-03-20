@@ -24,7 +24,48 @@ body {
     font-family: "Poppins Regular";
 }
 
-h1, h2, h3, nav {
+h1, h2, h3, nav, .splashscreen {
     font-family: "Poppins Bold";
 }
 
+
+/* animation vom splashscreen */
+@keyframes slideDown {
+    0% {
+        top: -100%; /* Anfang: Div außerhalb des Bildschirms oben */
+    }
+    30% {
+        top: 0; /* Das Div ist noch unterwegs nach unten */
+    }
+    50% {
+        top: 0; /* Das Div ist vollständig sichtbar */
+    }
+    70% {
+        top: 0; /* Es bleibt länger sichtbar, um es auf dem Bildschirm zu halten */
+    }
+    100% {
+        top: 100%; /* Ende: Div verschwindet nach unten */
+    }
+}
+
+.intro-slide {
+    animation: slideDown 5s ease-in-out forwards;
+}
+
+/* Animation für p-tag innerhalb des splashscreen */
+@keyframes scaleUp {
+    0% {
+        transform: scale(1); /* Anfang: Normale Größe */
+    }
+    50% {
+        transform: scale(2); /* Mitte: Skalierung auf 1.5x */
+    }
+    100% {
+        transform: scale(1); /* Ende: Zurück zur normalen Größe */
+    }
+}
+
+.scaled-text {
+    animation: scaleUp 1.5s ease-in-out forwards;
+    animation-delay: 2s;
+}

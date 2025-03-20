@@ -1,14 +1,25 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
 import { IGenre } from "../interfaces/interfaces";
 import axios from "axios";
+import { useLocation, useParams } from "react-router-dom";
 
 interface ISearchProps {
     position: string
 }
 
 const SearchBar = ({position}: ISearchProps) => {
+
+    //für den button toggle
+  const {genreID} = useParams()
+
+  const location = useLocation()
+  const moviePage = location.pathname === "/movies"
+
+
+
+
 
     const {movieGenreList, setMovieGenreList} = useContext(mainContext) as any
 
@@ -48,9 +59,9 @@ const SearchBar = ({position}: ISearchProps) => {
                 />
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
-                <Button name="All movies" link="/movies"/>
+                <Button name="All movies" link="/movies" backGroundColor={moviePage ? "bg-main-red" : ""}/>
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`}/>
+                return <Button  key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreID) === genre?.id ? "bg-main-red" : ""}/>
             })}
 
 
