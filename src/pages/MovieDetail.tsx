@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IMovieDetails } from "../interfaces/interfaces";
+import BackButton from "../components/BackButton";
 
 const MovieDetail = () => {
     const {movieParam} = useParams();
-    const navigate = useNavigate();
 
     let [showOverview, setShowOverview] = useState<boolean>(false)
     const toggleOverview = () => {
@@ -42,16 +42,14 @@ const MovieDetail = () => {
     return ( 
         <>
             {movieItem && <>
-            <div onClick={()=> navigate(-1)} className="bg-white absolute top-5 left-5 cursor-pointer h-10 w-10 flex rounded-full p-1.5">
-                <img src="/images/arrowBack.svg" alt="Back Arrow" />
-            </div>
+            <BackButton/>
             <div className="absolute h-120 -z-10">
                 <div className="relative">
-                    <img className="h-120 w-screen object-cover" src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`} alt="" />
+                    <img className="h-120 w-screen object-cover" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
                     <div className="bg-linear-to-t from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen"></div>
                 </div>
             </div>
-            <section className="pt-100 px-5">
+            <section className="pt-100 px-5 pb-25">
                 <article className="flex flex-col items-center mb-5">
                     <p className="text-sm mb-1">Movie Details</p>
                     <h1 className="text-2xl mb-1 text-center">{movieItem.title}</h1>
@@ -67,7 +65,8 @@ const MovieDetail = () => {
                     <p>{movieItem.overview.length > 110 && !showOverview ?
                     movieItem.overview.slice(0,110) + "..."
                     : movieItem.overview}
-                    <a onClick={toggleOverview} className="text-main-red">{showOverview ? " See less..." : " See more..."}</a>
+                    {movieItem.overview.length > 110 && <a onClick={toggleOverview} className="text-main-red">{showOverview ? " See less..." : " See more..."}</a>
+                }
                     </p>
                 </article>
                 <article className="flex flex-col gap-3 mb-5">
@@ -80,8 +79,10 @@ const MovieDetail = () => {
                         <ul className="flex gap-2">{movieItem.spoken_languages.map((language) => (<li key={crypto.randomUUID()}>{language.english_name}</li>))}</ul>
                     </div>
                 </article>
-                <div className="flex justify-center items-center">
-                    <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
+                <div className="flex justify-center">
+                    <Link to={`/${movieParam}/trailer`}>
+                        <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
+                    </Link>
                 </div>
             </section>
             </>
