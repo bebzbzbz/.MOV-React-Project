@@ -101,7 +101,7 @@ console.log(movieDataList);
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
                 <Button name="All movies" link="/movies" backGroundColor={moviePage ? "toggle-genre" : ""}/>
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreID) === genre?.id ? "toggle-genre" : ""}/>
+                return <Button key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreParam) === genre?.id ? "toggle-genre" : ""}/>
             })}
             </div>
         </section>
