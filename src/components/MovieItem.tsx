@@ -26,7 +26,6 @@ const MovieItem = ({movieID}:MovieItemProps) => {
                 const response = await axios.request(options)
 
                 if(response) {
-                    console.log(response.data)
                     setMovieItem(response.data)
                 }
             } catch (error) {
@@ -39,25 +38,26 @@ const MovieItem = ({movieID}:MovieItemProps) => {
     //einzelne Daten aus obigem Fetch rendern
     return ( 
         <>
-            {movieItem &&
-                (<Link to={`/${movieID}`} className="flex gap-10 pb-5 items-center">
-                    <div className="flex-1">
+            {movieItem?.popularity &&
+                (<Link to={`/${movieID}`} className="flex gap-6 pb-5 items-center">
+                    <div className="flex-2">
                         <img className="rounded-lg" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
                     </div>
-                    <article className="flex-5">
+                    <article className="flex-4">
                         <div className="flex justify-between pb-2">
                         <h3>{movieItem.title.split(' ').slice(0, 4).join(' ')}<br />
                         {movieItem.title.split(' ').slice(4).join(' ')}</h3>
                         <img src="/images/saveIcon.svg" alt="SaveIcon" />
                         </div>
-                        <div className="flex gap-1 flex-wrap">
-                            <div className="flex gap-1">
+                        <ul className="flex gap-x-3 flex-wrap">
+                            <li className="flex gap-1">
                                 <img className="w-5" src="/images/star.svg" alt="star" />
-                                <h2>{movieItem.vote_average}</h2>
-                            </div>
-                            <p> ● {movieItem.release_date.slice(0, 4)} ● {movieItem.genres[0]?.name} ● {movieItem.runtime > 0 ? `${movieItem.runtime} mins` : "keine Angabe"}
-                            </p>
-                        </div>
+                                <h3>{movieItem.vote_average > 0 ? `${movieItem.vote_average}` : "No rating"}</h3>
+                            </li>
+                            <li>● {movieItem.release_date.slice(0, 4)}</li>
+                            <li>● {movieItem.genres[0]?.name}</li>
+                            <li>● {movieItem.runtime > 0 ? `${movieItem.runtime} mins` : "No runtime info"}</li>
+                        </ul>
                     </article>
                 </Link>)
             }

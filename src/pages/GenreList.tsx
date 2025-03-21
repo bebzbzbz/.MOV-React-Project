@@ -5,13 +5,14 @@ import { mainContext } from "../context/MainProvider";
 import { ISingleMovie } from "../interfaces/interfaces";
 import SearchBar from "../components/SearchBar";
 import MovieItem from "../components/MovieItem";
+import PagesNav from "../components/PagesNav";
 
 const GenreList = () => {
 
     //useParams() mit genreID füllen, um path /idgenre und so auf einzelnes Genre aus fetch zuzugreifen und darüber den Fetch für alle Filme des jeweilige Genre zu machen
     const {genreParam} = useParams()
 
-    const {movieDataList, setMovieDataList} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as any
 
     const options = {
         method: 'GET',
@@ -20,7 +21,7 @@ const GenreList = () => {
           include_adult: 'false',
           include_video: 'true',
           language: 'en-US',
-          page: '1',
+          page: page,
           sort_by: 'popularity.desc',
           // hier wird genreID als Parameter für fetch weiter gegeben, was gleichzeitig für den Pfad benutzt wird
           with_genres: genreParam
@@ -44,15 +45,16 @@ const GenreList = () => {
         }
         fetchData()
         // wenn sich Param (in url) ändert, dann wird nue gefetched, also bei jedem GenreButton-Klick
-    }, [genreParam])
+    }, [genreParam, page])
 
     //hier wird über die Daten aus Genre Fetch gemappt, um auf die einzelnen Movies zugreifen zu können, um diese dann mit einem weiteren Fetch, über deren ID zu rendern
     return ( 
         <section className="p-5 pb-25">
-        <SearchBar position="top-11"/>
-        {movieDataList && movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
+          <SearchBar position="top-11"/>
+          {movieDataList && movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
+          <PagesNav/>
         </section>
-     );
+    );
 }
- 
+
 export default GenreList;
