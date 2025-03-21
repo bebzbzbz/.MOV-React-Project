@@ -57,7 +57,7 @@ const Home = () => {
               {/* film wird nur im slider angezeigt, wenn data auch ein poster hat mit ternary operator */}
                 {movieDataList && movieDataList.map((movie: ISingleMovie)=> (
                     movie.poster_path ? (
-                        <div className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
+                        <div key={crypto.randomUUID()} className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
                           <img
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                             className="w-full rounded-lg object-cover object-top h-full"
