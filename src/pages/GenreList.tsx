@@ -51,7 +51,9 @@ const GenreList = () => {
     return ( 
         <section className="p-5 pb-25">
           <SearchBar position="top-11"/>
+          <section className="lg:grid grid-cols-2 gap-20">
           {movieDataList && movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
+          </section>
           <PagesNav/>
         </section>
     );

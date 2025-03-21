@@ -58,10 +58,9 @@ const SearchBar = ({position}: ISearchProps) => {
         }
 
 
-    //fetch für Input
+    //fetch für Input (query ist Endpunkt, um nach Filmtiteln zu suchen)
     const optionsForInputFetch = {
         method: 'GET',
-        // batman dann mit dynamic url ersetzen
         url: `https://api.themoviedb.org/3/search/movie?query=${inputValue}`,
         params: {include_adult: 'false', language: 'en-US', page: page},
         headers: {
@@ -69,6 +68,7 @@ const SearchBar = ({position}: ISearchProps) => {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWIwODQ2MTQwZDgwZjlmZjczYmQyYjc4ZGZjNWQzYSIsIm5iZiI6MTc0MjM3NTg0Mi4yMDQsInN1YiI6IjY3ZGE4YmEyMTc0MWVkMWYwMWExZmE2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ihQAnLonY4TU4czAzLNOzASC_X972m1NJE-E2faZrQo'
         }
     };
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -83,11 +83,6 @@ const SearchBar = ({position}: ISearchProps) => {
         fetchData()
         //der Inhalt des Input-Felds als Dependency
     }, [inputValue, page])
-
-
-console.log(movieDataList);
-
-
 
     return ( 
         <section className="flex flex-col gap-5 pb-10">

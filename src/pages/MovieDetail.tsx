@@ -43,17 +43,17 @@ const MovieDetail = () => {
     }
 
     return ( 
-        <>
+        <section className="lg:grid lg:grid-cols-2">
             {movieItem && <>
             <BackButton/>
-            <div className="absolute h-120 -z-10">
+            <div className="absolute h-120 -z-10 lg:left-80 lg:top-10">
                 <div className="relative">
-                    <img className="h-120 w-screen object-cover" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
-                    <div className="bg-linear-to-t from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen"></div>
+                    <img className="h-120 w-screen object-cover lg:w-90 lg:h-full" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
+                    <div className="bg-linear-to-t lg:bg-gradient-to-l from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen lg:h-full lg:w-120"></div>
                 </div>
             </div>
-            <section className="pt-100 px-5 pb-25">
-                <article className="flex flex-col items-center mb-5">
+            <section className="pt-100 px-5 pb-25 lg:col-start-2 lg:pt-40 lg:pr-30">
+                <article className="flex flex-col items-center mb-5 lg:items-start">
                     <p className="text-sm mb-1">Movie Details</p>
                     <h1 className="text-2xl mb-1 text-center">{movieItem.title}</h1>
                     <ul className="flex flex-wrap justify-center gap-2 ">
@@ -83,7 +83,7 @@ const MovieDetail = () => {
                         <ul className="flex gap-2">{movieItem.spoken_languages.map((language) => (<li key={crypto.randomUUID()}>{language.english_name}</li>))}</ul>
                     </div>
                 </article>
-                <div className="flex justify-center">
+                <div className="flex justify-center lg:justify-start">
                     <Link to={`/${movieParam}/trailer`}>
                         <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
                     </Link>
@@ -91,7 +91,7 @@ const MovieDetail = () => {
             </section>
             </>
             }
-        </>
+        </section>
     );
 }
 
