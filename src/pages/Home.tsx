@@ -45,7 +45,7 @@ const Home = () => {
     return ( 
         <section className="p-5 pb-25">
         <h1 className="text-4xl font-bold pb-8">Welcome!</h1>
-        <SearchBar position="top-31"/>
+        <SearchBar/>
         
             <article className="flex flex-row justify-between items-center pb-5">
                 <p className="font-bold text-xl">Trending Movies</p>

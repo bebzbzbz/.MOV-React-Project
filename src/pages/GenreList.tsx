@@ -53,7 +53,7 @@ const GenreList = () => {
     //hier wird über die Daten aus Genre Fetch gemappt, um auf die einzelnen Movies zugreifen zu können, um diese dann mit einem weiteren Fetch, über deren ID zu rendern
     return ( 
         <section className="p-5 pb-25">
-          <SearchBar position="top-11"/>
+          <SearchBar/>
           <section className="lg:grid grid-cols-2 gap-20">
           {movieDataList && movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
           </section>

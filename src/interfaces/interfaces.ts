@@ -83,10 +83,6 @@ export interface ITrailer {
     type: string
 }
 
-export interface ISearchProps {
-    position: string
-}
-
 //Interfaces für Übergabe Context
 
 export interface ISetPageContext {

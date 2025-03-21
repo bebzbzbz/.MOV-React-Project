@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState} from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
-import { IGenre, ISearchBarFetchContext, ISearchProps} from "../interfaces/interfaces";
+import { IGenre, ISearchBarFetchContext} from "../interfaces/interfaces";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 
 
-const SearchBar = ({position}: ISearchProps) => {
+const SearchBar = () => {
 
     //für den button toggle
   const {genreParam} = useParams()
@@ -83,12 +83,12 @@ const SearchBar = ({position}: ISearchProps) => {
 
     return ( 
         <section className="flex flex-col gap-5 pb-10">
-            <div className="">
+            <div className="relative">
                 <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch}/>
-                    <img
-                    src="../../public/images/Vector.png"
-                    alt="Icon"
-                    className={`absolute right-10 ${position} transform -translate-y-1/2`}
+                <img
+                src="../../public/images/Vector.png"
+                alt="Icon"
+                className={`absolute right-3 top-3 transform`}
                 />
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
