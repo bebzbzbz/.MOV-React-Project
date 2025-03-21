@@ -3,12 +3,12 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import { useContext, useEffect } from "react";
 import { mainContext } from "../context/MainProvider";
-import { ISingleMovie } from "../interfaces/interfaces";
+import { IFetchAllMoviesAndGenreContext, ISingleMovie } from "../interfaces/interfaces";
 
 const Home = () => {
 
     //useState aus Mainprovider für slider
-    const {movieDataList, setMovieDataList} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
 
     //fetch für slider
     const options = {
@@ -71,7 +71,7 @@ const Home = () => {
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 justify-end">
-                                  {movie.vote_average > 0 && <p className="md:text-4xl">{movie.vote_average}/10</p>
+                                  {movie.vote_average > 0 && <p className="md:text-4xl">{movie.vote_average.toFixed(1)}/10</p>
                                 }
                                   <img className="w-5 md:w-10" src="/images/star.svg" alt="star" />
                                 </div>

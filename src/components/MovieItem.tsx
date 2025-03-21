@@ -52,7 +52,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
                         <ul className="flex gap-x-3 flex-wrap lg:text-lg">
                             <li className="flex gap-1">
                                 <img className="w-5 lg:w-7 self-start" src="/images/star.svg" alt="star" />
-                                <h3>{movieItem.vote_average > 0 ? `${movieItem.vote_average}` : "No rating"}</h3>
+                                <h3>{movieItem.vote_average > 0 ? `${movieItem.vote_average.toFixed(1)}` : "No rating"}</h3>
                             </li>
                             <li>● {movieItem.release_date.slice(0, 4)}</li>
                             <li>● {movieItem.genres[0]?.name}</li>

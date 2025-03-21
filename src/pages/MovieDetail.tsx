@@ -57,7 +57,7 @@ const MovieDetail = () => {
                     <p className="text-sm mb-1">Movie Details</p>
                     <h1 className="text-2xl mb-1 text-center">{movieItem.title}</h1>
                     <ul className="flex flex-wrap justify-center gap-2 ">
-                        <li>⭐️ {movieItem.vote_average > 0 ? `${movieItem.vote_average}` : "No rating"}</li>
+                        <li>⭐️ {movieItem.vote_average > 0 ? `${movieItem.vote_average.toFixed(1)}` : "No rating"}</li>
                         <li>● {movieItem.release_date}</li>
                         <li>● {movieItem.genres[0]?.name}</li>
                         <li>● {movieItem.runtime > 0 ? `${movieItem.runtime} mins` : "No runtime info"} </li>

@@ -1,13 +1,10 @@
 import { useContext, useEffect, useRef, useState} from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
-import { IGenre } from "../interfaces/interfaces";
+import { IGenre, ISearchBarFetchContext, ISearchProps} from "../interfaces/interfaces";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 
-interface ISearchProps {
-    position: string
-}
 
 const SearchBar = ({position}: ISearchProps) => {
 
@@ -19,7 +16,7 @@ const SearchBar = ({position}: ISearchProps) => {
   const moviePage = location.pathname === "/movies"
 
   //useState für Daten aus Fetch
-    const {movieGenreList, setMovieGenreList, movieDataList, setMovieDataList, page, setPage} = useContext(mainContext) as any
+    const {movieGenreList, setMovieGenreList, setMovieDataList, page, setPage} = useContext(mainContext) as ISearchBarFetchContext
 
     //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()
     const options = {

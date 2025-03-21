@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { mainContext } from "../context/MainProvider";
+import { ISetPageContext } from "../interfaces/interfaces";
 
 const PagesNav = () => {
 
-    const {page, setPage} = useContext(mainContext) as any
+    const {page, setPage} = useContext(mainContext) as ISetPageContext
 
     return ( 
         <div className="flex justify-center gap-6 lg:pt-5">

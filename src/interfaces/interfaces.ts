@@ -82,3 +82,29 @@ export interface ITrailer {
     size: number
     type: string
 }
+
+export interface ISearchProps {
+    position: string
+}
+
+//Interfaces für Übergabe Context
+
+export interface ISetPageContext {
+    page: number
+    setPage: (page: number)=> void
+}
+
+export interface ISearchBarFetchContext {
+    movieGenreList: IGenre[]
+    setMovieGenreList: (movieGenreList: IGenre[]) => void
+    movieDataList: ISingleMovie[]
+    setMovieDataList: (movieDataList: ISingleMovie[]) => void
+    page: number
+    setPage: (page: number)=> void
+}
+
+export interface IFetchAllMoviesAndGenreContext {
+    page?: number,
+    movieDataList: ISingleMovie[]
+    setMovieDataList: (movieDataList: ISingleMovie[]) => void
+}

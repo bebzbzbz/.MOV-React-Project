@@ -2,14 +2,14 @@ import axios from "axios";
 import SearchBar from "../components/SearchBar";
 import { useContext, useEffect } from "react";
 import { mainContext } from "../context/MainProvider";
-import { ISingleMovie } from "../interfaces/interfaces";
+import { IFetchAllMoviesAndGenreContext, ISingleMovie } from "../interfaces/interfaces";
 import MovieItem from "../components/MovieItem";
 import PagesNav from "../components/PagesNav";
 
 const AllMovies = () => {
 
     //useState aus MainProvider
-    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
 
     //Fetch Block für Popular movies
     const options = {

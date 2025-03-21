@@ -2,17 +2,20 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { mainContext } from "../context/MainProvider";
-import { ISingleMovie } from "../interfaces/interfaces";
+import { IFetchAllMoviesAndGenreContext, ISingleMovie } from "../interfaces/interfaces";
 import SearchBar from "../components/SearchBar";
 import MovieItem from "../components/MovieItem";
 import PagesNav from "../components/PagesNav";
+
+
+
 
 const GenreList = () => {
 
     //useParams() mit genreID füllen, um path /idgenre und so auf einzelnes Genre aus fetch zuzugreifen und darüber den Fetch für alle Filme des jeweilige Genre zu machen
     const {genreParam} = useParams()
 
-    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
 
     const options = {
         method: 'GET',
