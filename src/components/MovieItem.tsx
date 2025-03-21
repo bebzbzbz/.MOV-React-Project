@@ -9,6 +9,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
     const [movieItem, setMovieItem] = useState<IMovieDetails>();
 
     //fetch Block für einzelnen Movie mit entsprechender ID
+    //movieID kommt aus dem mappen durch den Fetch in AllMovies.tsx (und GenreList)
     const options = {
         method: 'GET',
         url: `https://api.themoviedb.org/3/movie/${movieID}`,

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
 import { IGenre } from "../interfaces/interfaces";
@@ -19,7 +19,6 @@ const SearchBar = ({position}: ISearchProps) => {
   const moviePage = location.pathname === "/movies"
 
   //useState für Daten aus Fetch
-  //! hier wäre auch anderer useState möglich zu nutzen?!
     const {movieGenreList, setMovieGenreList} = useContext(mainContext) as any
 
     //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()

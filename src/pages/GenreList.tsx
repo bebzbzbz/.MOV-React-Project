@@ -9,9 +9,9 @@ import MovieItem from "../components/MovieItem";
 const GenreList = () => {
 
     //useParams() mit genreID füllen, um path /idgenre und so auf einzelnes Genre aus fetch zuzugreifen und darüber den Fetch für alle Filme des jeweilige Genre zu machen
-    const {genreID} = useParams()
+    const {genreParam} = useParams()
 
-    const {movieDataListFromGenres, setMovieDataListFromGenres} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList} = useContext(mainContext) as any
 
     const options = {
         method: 'GET',
@@ -23,7 +23,7 @@ const GenreList = () => {
           page: '1',
           sort_by: 'popularity.desc',
           // hier wird genreID als Parameter für fetch weiter gegeben, was gleichzeitig für den Pfad benutzt wird
-          with_genres: genreID
+          with_genres: genreParam
         },
         headers: {
           accept: 'application/json',
@@ -36,20 +36,21 @@ const GenreList = () => {
             try {
                 const response = await axios.request(options)
                 if(response) {
-                    setMovieDataListFromGenres(response.data.results)
+                    setMovieDataList(response.data.results)
                 }
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData()
-    }, [genreID])
+        // wenn sich Param (in url) ändert, dann wird nue gefetched, also bei jedem GenreButton-Klick
+    }, [genreParam])
 
     //hier wird über die Daten aus Genre Fetch gemappt, um auf die einzelnen Movies zugreifen zu können, um diese dann mit einem weiteren Fetch, über deren ID zu rendern
     return ( 
         <section className="p-5 pb-25">
         <SearchBar position="top-11"/>
-        {movieDataListFromGenres && movieDataListFromGenres.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
+        {movieDataList && movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
         </section>
      );
 }

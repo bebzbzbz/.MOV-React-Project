@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 
 const Trailer = () => {
+    //weitere Verwendung der MovieId mit Params
     const {movieParam} = useParams()
     const [trailer, setTrailer] = useState<ITrailer>();
 
+    //fetch über die Id zu den Videos pro Movie
     const options = {
         method: 'GET',
         url: `https://api.themoviedb.org/3/movie/${movieParam}/videos`,
@@ -18,6 +20,8 @@ const Trailer = () => {
         }
     };
     
+
+    //hier wird schon so weit herein navigiert, dass nur der tariler gefeched wird 
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,13 +36,11 @@ const Trailer = () => {
             }
         }
         fetchData()
-    }, [])
-
-    console.log(trailer)
-
-    // const trailerURL 
+    }, []) 
 
     return ( 
+        // url zur src zusammenfügen aus dem trailer key aus dem fetch und "typischer" youtube api 
+        //s. Api Doku
         <div className="w-screen h-screen">
             <BackButton/>
             <iframe style={{width: '100%', height: '100%', 

@@ -7,8 +7,10 @@ import MovieItem from "../components/MovieItem";
 
 const AllMovies = () => {
 
+    //useState aus MainProvider
     const {movieDataList, setMovieDataList} = useContext(mainContext) as any
 
+    //Fetch Block für Popular movies
     const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/discover/movie',
@@ -31,7 +33,6 @@ const AllMovies = () => {
                 const response = await axios.request(options)
 
                 if(response) {
-                    // console.log(response.data.results);
                     setMovieDataList(response.data.results)
                 }
             } catch (error) {
@@ -42,6 +43,7 @@ const AllMovies = () => {
     }, [])
 
 
+    //Über Daten fetchen und MovieItem.tsx returnen mit entsprechenden Props, um in MovieItem mit ID zu fetchen
     return ( 
         <section className="p-5 pb-25">
             <SearchBar position="top-11"/>

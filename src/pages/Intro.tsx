@@ -4,7 +4,6 @@ import SplashScreen from "../components/SplashScreen";
 const Intro = () => {
     return ( 
         <>
-            {/* <SplashScreen/> */}
             <section className="flex flex-col md:flex-row md:items-center h-screen justify-between">
                 <div className="relative  overflow-hidden h-[60vh] md:h-screen w-full bg-[url('../../public/images/IntroApp.png')] bg-cover bg-center">
                 <div className="absolute z-10 -rotate-5 left-6 top-28 md:top-43 md:left-8 lg:left-50">

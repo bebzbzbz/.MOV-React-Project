@@ -5,15 +5,12 @@ import { IMovieDetails } from "../interfaces/interfaces";
 import BackButton from "../components/BackButton";
 
 const MovieDetail = () => {
+    //ID des einzelnen Films, um damit zu fetchen und für unsere url
     const {movieParam} = useParams();
-
-    let [showOverview, setShowOverview] = useState<boolean>(false)
-    const toggleOverview = () => {
-        setShowOverview(!showOverview);
-    }
 
     const [movieItem, setMovieItem] = useState<IMovieDetails>();
 
+    //Fetch Block für einzelne Movies mit ID-->gibt Array aus Movies mit Typ MovieDetails, um Details zu rendern
     const options = {
         method: 'GET',
         url: `https://api.themoviedb.org/3/movie/${movieParam}`,
@@ -39,6 +36,12 @@ const MovieDetail = () => {
         fetchData()
     }, [])
 
+    //toggle für See more / See less
+    let [showOverview, setShowOverview] = useState<boolean>(false)
+    const toggleOverview = () => {
+        setShowOverview(!showOverview);
+    }
+
     return ( 
         <>
             {movieItem && <>
@@ -62,6 +65,7 @@ const MovieDetail = () => {
                 </article>
                 <article className="mb-5">
                     <h2 className="mb-3 text-lg">Overview</h2>
+                                        {/* wenn die Beschreibung über 110 Zeichen enthält und showOverview false ist, wird es geschnitten und man sieht Show more, wenn die Beschreibung noch kürzer ist,wird auch kein Button angezeigt --- Klick auf Show more, toggelt auf true und zeigt dann den ganzen Text (kein slice) und zeigt die Option "show less", die dann wieder toggelt*/}
                     <p>{movieItem.overview.length > 110 && !showOverview ?
                     movieItem.overview.slice(0,110) + "..."
                     : movieItem.overview}
