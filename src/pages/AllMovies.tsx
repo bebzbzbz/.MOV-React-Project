@@ -51,6 +51,7 @@ const AllMovies = () => {
     return ( 
         <section className="p-5 pb-25">
             <SearchBar/>
+            <PagesNav/>
                 <section className="lg:grid grid-cols-2 gap-20">
                 {movieDataList 
                     ? movieDataList.map((movie: ISingleMovie) => { 

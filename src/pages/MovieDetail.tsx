@@ -69,7 +69,7 @@ const MovieDetail = () => {
                     <p>{movieItem.overview.length > 110 && !showOverview ?
                     movieItem.overview.slice(0,110) + "..."
                     : movieItem.overview}
-                    {movieItem.overview.length > 110 && <a onClick={toggleOverview} className="text-main-red">{showOverview ? " See less..." : " See more..."}</a>
+                    {movieItem.overview.length > 110 && <a onClick={toggleOverview} className="text-main-red cursor-pointer">{showOverview ? " See less..." : " See more..."}</a>
                 }
                     </p>
                 </article>

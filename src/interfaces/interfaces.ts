@@ -3,7 +3,7 @@ export interface IButtonProps {
     link: string,
     backGroundColor?: string,
     style?: string,
-    genreId: number
+    genreId?: number
 }
 
 export interface IGenre {
