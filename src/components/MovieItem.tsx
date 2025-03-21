@@ -38,7 +38,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
     //einzelne Daten aus obigem Fetch rendern
     return ( 
         <>
-            {movieItem?.popularity &&
+            {movieItem &&
                 (<Link to={`/${movieID}`} className="flex gap-6 lg:gap-10 pb-5 items-center">
                     <div className="flex-2 lg:flex-2">
                         <img className="rounded-lg" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
