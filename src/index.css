@@ -72,6 +72,29 @@ h1, h2, h3, nav, .splashscreen {
     color: white;
 }
 
+/* Animation für slide-Hinweis innerhalb auf /home */
+@keyframes arrowBounce {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px); 
+    }
+    100% {
+        transform: translateX(0); 
+    }
+}
+
+.bounceyArrow {
+    animation: arrowBounce 2s ease-in-out infinite;
+}
+.bounceyArrow:nth-of-type(2) {
+    animation-delay: .2s;
+}
+.bounceyArrow:nth-of-type(3) {
+    animation-delay: .4s;
+}
+
 @plugin "daisyui" {
     themes: false;
   }
