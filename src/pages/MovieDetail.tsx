@@ -48,7 +48,7 @@ const MovieDetail = () => {
             <BackButton/>
             <div className="absolute h-120 -z-10 lg:left-80 lg:top-15">
                 <div className="relative">
-                    <img className="h-120 w-screen object-cover lg:rounded-lg lg:w-90 lg:h-full" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
+                    <img className="h-120 w-screen object-cover lg:rounded-lg lg:w-85 lg:h-full" src={movieItem.poster_path ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}` : `/images/cameraIcon.svg`} alt={movieItem.title} />
                     <div className="bg-linear-to-t lg:bg-gradient-to-l from-white from-10% to-transparent to-50% absolute top-0 h-120 w-screen lg:h-full lg:w-120"></div>
                 </div>
             </div>
