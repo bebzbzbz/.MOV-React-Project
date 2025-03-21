@@ -14,15 +14,15 @@ const SearchBar = ({position}: ISearchProps) => {
     //für den button toggle
   const {genreID} = useParams()
 
+  //für den Button Toggle für "All Movies", weil dieser Button hard gecoded
   const location = useLocation()
   const moviePage = location.pathname === "/movies"
 
-
-
-
-
+  //useState für Daten aus Fetch
+  //! hier wäre auch anderer useState möglich zu nutzen?!
     const {movieGenreList, setMovieGenreList} = useContext(mainContext) as any
 
+    //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()
     const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/genre/movie/list',

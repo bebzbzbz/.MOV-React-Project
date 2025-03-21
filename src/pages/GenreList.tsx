@@ -8,8 +8,8 @@ import MovieItem from "../components/MovieItem";
 
 const GenreList = () => {
 
+    //useParams() mit genreID füllen, um path /idgenre und so auf einzelnes Genre aus fetch zuzugreifen und darüber den Fetch für alle Filme des jeweilige Genre zu machen
     const {genreID} = useParams()
-    console.log("genre list", genreID)
 
     const {movieDataListFromGenres, setMovieDataListFromGenres} = useContext(mainContext) as any
 
@@ -22,6 +22,7 @@ const GenreList = () => {
           language: 'en-US',
           page: '1',
           sort_by: 'popularity.desc',
+          // hier wird genreID als Parameter für fetch weiter gegeben, was gleichzeitig für den Pfad benutzt wird
           with_genres: genreID
         },
         headers: {
@@ -44,8 +45,7 @@ const GenreList = () => {
         fetchData()
     }, [genreID])
 
-    console.log(movieDataListFromGenres);
-
+    //hier wird über die Daten aus Genre Fetch gemappt, um auf die einzelnen Movies zugreifen zu können, um diese dann mit einem weiteren Fetch, über deren ID zu rendern
     return ( 
         <section className="p-5 pb-25">
         <SearchBar position="top-11"/>

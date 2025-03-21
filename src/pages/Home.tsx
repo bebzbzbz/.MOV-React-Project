@@ -7,8 +7,10 @@ import { ISingleMovie } from "../interfaces/interfaces";
 
 const Home = () => {
 
+    //useState aus Mainprovider für slider
     const {movieDataList, setMovieDataList} = useContext(mainContext) as any
 
+    //fetch für slider
     const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/discover/movie',
@@ -31,7 +33,6 @@ const Home = () => {
                 const response = await axios.request(options)
 
                 if(response) {
-                    // console.log(response.data.results);
                     setMovieDataList(response.data.results)
                 }
             } catch (error) {
@@ -40,8 +41,6 @@ const Home = () => {
         }
         fetchData()
     }, [])
-
-    console.log(movieDataList);
 
     return ( 
         <section className="p-5 pb-25">
@@ -52,8 +51,10 @@ const Home = () => {
                 <p className="font-bold text-xl">Trending Movies</p>
                 <Link to={"/movies"} className="text-main-red">See all</Link>
             </article>
+            {/* Slider mit trending/popular movies aus daisyUI */}
             <article className="w-full flex justify-center pb-3">
             <div className="carousel rounded-box w-full rounded-lg">
+              {/* film wird nur im slider angezeigt, wenn data auch ein poster hat mit ternary operator */}
                 {movieDataList && movieDataList.map((movie: ISingleMovie)=> (
                     movie.poster_path ? (
                         <div className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
