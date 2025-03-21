@@ -4,11 +4,13 @@ import { useContext, useEffect } from "react";
 import { mainContext } from "../context/MainProvider";
 import { ISingleMovie } from "../interfaces/interfaces";
 import MovieItem from "../components/MovieItem";
+import PagesNav from "../components/PagesNav";
 
 const AllMovies = () => {
 
     //useState aus MainProvider
-    const {movieDataList, setMovieDataList} = useContext(mainContext) as any
+    const {movieDataList, setMovieDataList, page} = useContext(mainContext) as any
+    console.log(page)
 
     //Fetch Block für Popular movies
     const options = {
@@ -18,7 +20,7 @@ const AllMovies = () => {
             include_adult: 'false',
             include_video: 'true',
             language: 'en-US', 
-            page: '1',
+            page: page,
             sort_by: 'popularity.desc'
         },
         headers: {
@@ -40,7 +42,7 @@ const AllMovies = () => {
             }
         }
         fetchData()
-    }, [])
+    }, [page])
 
 
     //Über Daten fetchen und MovieItem.tsx returnen mit entsprechenden Props, um in MovieItem mit ID zu fetchen
@@ -48,6 +50,7 @@ const AllMovies = () => {
         <section className="p-5 pb-25">
             <SearchBar position="top-11"/>
                 {movieDataList.map((movie: ISingleMovie) => { return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>})}
+            <PagesNav/>
         </section>
     );
 }
