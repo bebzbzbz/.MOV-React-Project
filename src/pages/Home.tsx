@@ -44,7 +44,7 @@ const Home = () => {
 
     return ( 
         <section className="p-5 pb-25">
-        <h1 className="text-4xl font-bold pb-10">Welcome!</h1>
+        <h1 className="text-4xl font-bold pb-8">Welcome!</h1>
         <SearchBar position="top-31"/>
         
             <article className="flex flex-row justify-between items-center pb-5">
@@ -57,33 +57,36 @@ const Home = () => {
               {/* film wird nur im slider angezeigt, wenn data auch ein poster hat mit ternary operator */}
                 {movieDataList && movieDataList.map((movie: ISingleMovie)=> (
                     movie.poster_path ? (
-                        <div key={crypto.randomUUID()} className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
-                          <img
-                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                            className="w-full rounded-lg object-cover object-top h-full"
-                            alt="Movie Poster"
-                          />
-                          <article className="absolute text-white w-full p-5 bottom-0">
-                            <div className="flex gap-3 items-center">
-                              <h3 className="md:text-4xl">
-                                {movie.title.split(' ').slice(0, 4).join(' ')}<br />
-                                {movie.title.split(' ').slice(4).join(' ')}
-                              </h3>
-                            </div>
-                            <div className="flex gap-5 justify-end">
-                              <img className="w-5 md:w-10" src="/images/star.svg" alt="star" />
-                              <p className="md:text-4xl">{movie.vote_average}/10</p>
-                            </div>
-                          </article>
-                        </div>
-                      ) : null
+                          <div key={crypto.randomUUID()} className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
+                            <Link to={`/${movie.id}`} className="w-full rounded-lg">
+                              <img
+                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                className="w-full object-cover object-center h-full"
+                                alt="Movie Poster"
+                              />
+                              <article className="absolute text-white w-full p-5 bottom-0 z-10">
+                                <div className="flex gap-3 items-center justify-end">
+                                  <h3 className="md:text-4xl text-right">
+                                    {movie.title}
+                                  </h3>
+                                </div>
+                                <div className="flex gap-3 justify-end">
+                                  {movie.vote_average > 0 && <p className="md:text-4xl">{movie.vote_average}/10</p>
+                                }
+                                  <img className="w-5 md:w-10" src="/images/star.svg" alt="star" />
+                                </div>
+                              </article>
+                              <div className="bg-linear-to-t from-black from-20% to-transparent to-50% absolute top-0 h-full w-full opacity-70"></div>
+                            </Link>
+                          </div>                        
+                      ) : "null"
                 ))}
-</div>
+            </div>
             </article>
-            <div className="flex justify-end gap-1 pr-1">
-                <img className="w-5 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
-                <img className="w-5 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
-                <img className="w-5 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
+            <div className="flex justify-center">
+                <img className="bounceyArrow w-4 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
+                <img className="bounceyArrow w-4 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
+                <img className="bounceyArrow w-4 lg:w-8" src="/images/chevron-right.png" alt="Arrow to right" />
             </div>
         </section>
     );
