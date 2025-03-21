@@ -10,7 +10,6 @@ const AllMovies = () => {
 
     //useState aus MainProvider
     const {movieDataList, setMovieDataList, page} = useContext(mainContext) as any
-    console.log(page)
 
     //Fetch Block für Popular movies
     const options = {
