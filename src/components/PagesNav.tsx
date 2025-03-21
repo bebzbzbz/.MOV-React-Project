@@ -7,12 +7,9 @@ const PagesNav = () => {
 
     return ( 
         <div className="flex justify-center gap-6">
-            <p onClick={() => setPage(page + 1)}>
-                More
-            </p>
-            <p onClick={() => setPage(page - 1)}>
-                Less
-            </p>
+            <img src="/images/arrowBack.svg" className={page === 1 ? "opacity-0" : ""} alt="back" onClick={() => {if(page > 1) {setPage(page - 1)}}}/>
+            <p>{page}</p>
+            <img src="/images/arrowBack.svg" alt="next" className="-scale-x-100" onClick={() => setPage(page + 1)}/>
         </div>
     );
 }

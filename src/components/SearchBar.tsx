@@ -19,7 +19,7 @@ const SearchBar = ({position}: ISearchProps) => {
   const moviePage = location.pathname === "/movies"
 
   //useState für Daten aus Fetch
-    const {movieGenreList, setMovieGenreList, movieDataList, setMovieDataList} = useContext(mainContext) as any
+    const {movieGenreList, setMovieGenreList, movieDataList, setMovieDataList, page, setPage} = useContext(mainContext) as any
 
     //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()
     const options = {
@@ -53,6 +53,7 @@ const SearchBar = ({position}: ISearchProps) => {
         const [inputValue, setInputValue] = useState<string | undefined>("")
     
         const handleInput = () => {
+            setPage(1)
             setInputValue(movieByTitleSearch.current?.value)
         }
 
@@ -62,13 +63,13 @@ const SearchBar = ({position}: ISearchProps) => {
         method: 'GET',
         // batman dann mit dynamic url ersetzen
         url: `https://api.themoviedb.org/3/search/movie?query=${inputValue}`,
-        params: {include_adult: 'false', language: 'en-US', page: '1'},
+        params: {include_adult: 'false', language: 'en-US', page: page},
         headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWIwODQ2MTQwZDgwZjlmZjczYmQyYjc4ZGZjNWQzYSIsIm5iZiI6MTc0MjM3NTg0Mi4yMDQsInN1YiI6IjY3ZGE4YmEyMTc0MWVkMWYwMWExZmE2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ihQAnLonY4TU4czAzLNOzASC_X972m1NJE-E2faZrQo'
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWIwODQ2MTQwZDgwZjlmZjczYmQyYjc4ZGZjNWQzYSIsIm5iZiI6MTc0MjM3NTg0Mi4yMDQsInN1YiI6IjY3ZGE4YmEyMTc0MWVkMWYwMWExZmE2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ihQAnLonY4TU4czAzLNOzASC_X972m1NJE-E2faZrQo'
         }
-      };
-      useEffect(() => {
+    };
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.request(optionsForInputFetch)
@@ -81,7 +82,7 @@ const SearchBar = ({position}: ISearchProps) => {
         }
         fetchData()
         //der Inhalt des Input-Felds als Dependency
-    }, [inputValue])
+    }, [inputValue, page])
 
 
 console.log(movieDataList);
@@ -99,9 +100,9 @@ console.log(movieDataList);
                 />
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
-                <Button name="All movies" link="/movies" backGroundColor={moviePage ? "toggle-genre" : ""}/>
+                <Button name="All movies" link="/movies" backGroundColor={moviePage && !inputValue ? "toggle-genre" : ""}/>
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreParam) === genre?.id ? "toggle-genre" : ""}/>
+                return <Button key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreParam) === genre?.id  && !inputValue ? "toggle-genre" : ""}/>
             })}
             </div>
         </section>
