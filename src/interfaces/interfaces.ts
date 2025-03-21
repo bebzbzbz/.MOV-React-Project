@@ -2,7 +2,8 @@ export interface IButtonProps {
     name: string,
     link: string,
     backGroundColor?: string,
-    style?: string
+    style?: string,
+    genreId: number
 }
 
 export interface IGenre {
@@ -88,6 +89,11 @@ export interface ITrailer {
 export interface ISetPageContext {
     page: number
     setPage: (page: number)=> void
+}
+
+export interface ISetGenreContext {
+    genreValue: number,
+    setGenreValue: (genre: number) => void
 }
 
 export interface ISearchBarFetchContext {

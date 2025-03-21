@@ -2,7 +2,7 @@ import axios from "axios";
 import SearchBar from "../components/SearchBar";
 import { useContext, useEffect } from "react";
 import { mainContext } from "../context/MainProvider";
-import { IFetchAllMoviesAndGenreContext, ISingleMovie } from "../interfaces/interfaces";
+import { IFetchAllMoviesAndGenreContext, ISetGenreContext, ISingleMovie } from "../interfaces/interfaces";
 import MovieItem from "../components/MovieItem";
 import PagesNav from "../components/PagesNav";
 
@@ -10,6 +10,7 @@ const AllMovies = () => {
 
     //useState aus MainProvider
     const {movieDataList, setMovieDataList, page} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
+    const {genreValue} = useContext(mainContext) as ISetGenreContext
 
     //Fetch Block für Popular movies
     const options = {
@@ -20,7 +21,8 @@ const AllMovies = () => {
             include_video: 'true',
             language: 'en-US', 
             page: page,
-            sort_by: 'popularity.desc'
+            sort_by: 'popularity.desc',
+            with_genres: `${genreValue === 1 ? "" : genreValue}`
         },
         headers: {
         accept: 'application/json',
@@ -41,7 +43,8 @@ const AllMovies = () => {
             }
         }
         fetchData()
-    }, [page])
+    }, [page, genreValue])
+    // der useEffect wird neu ausgeführt, wenn sich die Variablen page und genreValue verändern
 
 
     //Über Daten fetchen und MovieItem.tsx returnen mit entsprechenden Props, um in MovieItem mit ID zu fetchen
@@ -49,9 +52,10 @@ const AllMovies = () => {
         <section className="p-5 pb-25">
             <SearchBar/>
                 <section className="lg:grid grid-cols-2 gap-20">
-                {movieDataList ? movieDataList.map((movie: ISingleMovie) => { 
-                    return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>}) : 
-                    <p>Loading movies...</p>}
+                {movieDataList 
+                    ? movieDataList.map((movie: ISingleMovie) => { 
+                    return <MovieItem movieID={movie.id} key={crypto.randomUUID()}/>}) 
+                    : <p>Loading movies...</p>}
                 </section>
             <PagesNav/>
         </section>

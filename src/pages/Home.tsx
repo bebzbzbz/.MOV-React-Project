@@ -9,7 +9,7 @@ const Home = () => {
 
     //useState aus Mainprovider für slider
     const {movieDataList, setMovieDataList} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
-
+    
     //fetch für slider
     const options = {
         method: 'GET',
@@ -46,7 +46,6 @@ const Home = () => {
         <section className="p-5 pb-25">
         <h1 className="text-4xl font-bold pb-8">Welcome!</h1>
         <SearchBar/>
-        
             <article className="flex flex-row justify-between items-center pb-5">
                 <p className="font-bold text-xl">Trending Movies</p>
                 <Link to={"/movies"} className="text-main-red">See all</Link>

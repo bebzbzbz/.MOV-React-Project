@@ -45,8 +45,7 @@ const MovieItem = ({movieID}:MovieItemProps) => {
                     </div>
                     <article className="flex-4 lg:flex-3">
                         <div className="flex justify-between lg:justify-normal lg:gap-3 pb-2">
-                        <h3 className="lg:text-2xl">{movieItem.title.split(' ').slice(0, 4).join(' ')}<br />
-                        {movieItem.title.split(' ').slice(4).join(' ')}</h3>
+                        <h3 className="lg:text-2xl">{movieItem.title}</h3>
                         <img  src="/images/saveIcon.svg" alt="SaveIcon" />
                         </div>
                         <ul className="flex gap-x-3 flex-wrap lg:text-lg">
