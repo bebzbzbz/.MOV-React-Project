@@ -9,7 +9,7 @@ const Home = () => {
 
     //useState aus Mainprovider für slider
     const {movieDataList, setMovieDataList} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
-
+    
     //fetch für slider
     const options = {
         method: 'GET',
@@ -45,8 +45,7 @@ const Home = () => {
     return ( 
         <section className="p-5 pb-25">
         <h1 className="text-4xl font-bold pb-8">Welcome!</h1>
-        <SearchBar position="top-31"/>
-        
+        <SearchBar/>
             <article className="flex flex-row justify-between items-center pb-5">
                 <p className="font-bold text-xl">Trending Movies</p>
                 <Link to={"/movies"} className="text-main-red">See all</Link>
@@ -55,32 +54,32 @@ const Home = () => {
             <article className="w-full flex justify-center pb-3">
             <div className="carousel rounded-box w-full rounded-lg">
               {/* film wird nur im slider angezeigt, wenn data auch ein poster hat mit ternary operator */}
-                {movieDataList && movieDataList.map((movie: ISingleMovie)=> (
+                {movieDataList ? movieDataList.map((movie: ISingleMovie)=> (
                     movie.poster_path ? (
-                          <div key={crypto.randomUUID()} className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
-                            <Link to={`/${movie.id}`} className="w-full rounded-lg">
-                              <img
-                                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                className="w-full object-cover object-center h-full"
-                                alt="Movie Poster"
-                              />
-                              <article className="absolute text-white w-full p-5 bottom-0 z-10">
-                                <div className="flex gap-3 items-center justify-end">
-                                  <h3 className="md:text-4xl text-right">
-                                    {movie.title}
-                                  </h3>
-                                </div>
-                                <div className="flex gap-3 justify-end">
-                                  {movie.vote_average > 0 && <p className="md:text-4xl">{movie.vote_average.toFixed(1)}/10</p>
-                                }
-                                  <img className="w-5 md:w-10" src="/images/star.svg" alt="star" />
-                                </div>
-                              </article>
-                              <div className="bg-linear-to-t from-black from-20% to-transparent to-50% absolute top-0 h-full w-full opacity-70"></div>
-                            </Link>
-                          </div>                        
-                      ) : "null"
-                ))}
+                        <div key={crypto.randomUUID()} className="carousel-item w-full overflow-hidden relative h-64 md:h-120 lg:h-144">
+                          <Link to={`/${movie.id}`} className="w-full rounded-lg">
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                              className="w-full object-cover object-center h-full"
+                              alt="Movie Poster"
+                            />
+                            <article className="absolute text-white w-full p-5 bottom-0 z-10">
+                              <div className="flex gap-3 items-center justify-end">
+                                <h3 className="md:text-4xl text-right">
+                                  {movie.title}
+                                </h3>
+                              </div>
+                              <div className="flex gap-3 justify-end">
+                                {movie.vote_average > 0 && <p className="md:text-4xl">{movie.vote_average.toFixed(1)}/10</p>
+                              }
+                                <img className="w-5 md:w-10" src="/images/star.svg" alt="star" />
+                              </div>
+                            </article>
+                            <div className="bg-linear-to-t from-black from-20% to-transparent to-50% absolute top-0 h-full w-full opacity-70"></div>
+                          </Link>
+                        </div>                        
+                    ) : "null"
+                )): <p>Loading...</p>}
             </div>
             </article>
             <div className="flex justify-center">

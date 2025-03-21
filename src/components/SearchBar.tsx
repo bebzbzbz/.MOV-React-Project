@@ -1,22 +1,17 @@
 import { useContext, useEffect, useRef, useState} from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
-import { IGenre, ISearchBarFetchContext, ISearchProps} from "../interfaces/interfaces";
+import { IGenre, ISearchBarFetchContext, ISetGenreContext} from "../interfaces/interfaces";
 import axios from "axios";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
+const SearchBar = () => {
 
-const SearchBar = ({position}: ISearchProps) => {
-
-    //für den button toggle
-  const {genreParam} = useParams()
-
-  //für den Button Toggle für "All Movies", weil dieser Button hard gecoded
-  const location = useLocation()
-  const moviePage = location.pathname === "/movies"
-
-  //useState für Daten aus Fetch
+  //useState für Daten aus Fetch + page useState, um Suchergebnisse zu aktualisieren
     const {movieGenreList, setMovieGenreList, setMovieDataList, page, setPage} = useContext(mainContext) as ISearchBarFetchContext
+
+    // genreValue wird unten durch button klick gesettet
+    const {genreValue, setGenreValue} = useContext(mainContext) as ISetGenreContext
 
     //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()
     const options = {
@@ -44,7 +39,6 @@ const SearchBar = ({position}: ISearchProps) => {
         fetchData()
     }, [])
 
-
         //Zugriff aufs InputFeld
         const movieByTitleSearch = useRef<HTMLInputElement>(null)
         const [inputValue, setInputValue] = useState<string | undefined>("")
@@ -53,7 +47,6 @@ const SearchBar = ({position}: ISearchProps) => {
             setPage(1)
             setInputValue(movieByTitleSearch.current?.value)
         }
-
 
     //fetch für Input (query ist Endpunkt, um nach Filmtiteln zu suchen)
     const optionsForInputFetch = {
@@ -81,20 +74,34 @@ const SearchBar = ({position}: ISearchProps) => {
         //der Inhalt des Input-Felds als Dependency
     }, [inputValue, page])
 
+    const location = useLocation()
+    const homePage = location.pathname === "/home"
+
+    const navigate = useNavigate()
+
     return ( 
         <section className="flex flex-col gap-5 pb-10">
-            <div className="">
-                <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch}/>
-                    <img
-                    src="../../public/images/Vector.png"
-                    alt="Icon"
-                    className={`absolute right-10 ${position} transform -translate-y-1/2`}
+            <div className="relative">
+                {/* nur auf home-seite inputfeld mit klickfunktion anzeigen
+                genreValue wird auf 1 gesetzt, damit die popular movies gefetcht werden können (in allMovies wird 1 zu "" übersetzt) */}
+                {homePage && <input type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." onClick={() => {navigate("/movies"); setGenreValue(1)}}/>
+                }
+
+                {/* auf sonstigen seiten inputfeld mit suchfunktion */}
+                {!homePage && <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch}/>
+            }
+                <img
+                src="../../public/images/Vector.png"
+                alt="Icon"
+                className={`absolute right-3 top-3 transform`}
                 />
             </div>
             <div className="flex flex-row justify-between gap-2 overflow-x-auto">
-                <Button name="All movies" link="/movies" backGroundColor={moviePage && !inputValue ? "toggle-genre" : ""}/>
+                <Button name="All movies" link="/movies" backGroundColor={genreValue === 1 && !inputValue ? "toggle-genre" : ""} genreId={1}/>
+
+                {/* bei buttonklick wird der genrevalue auf die id des genres gesettet und in allMovies an den fetch übergeben */}
                 {movieGenreList && movieGenreList.map((genre: IGenre)=> {
-                return <Button key={crypto.randomUUID()} name={genre.name} link={`/movies/${genre.id}`} backGroundColor={Number(genreParam) === genre?.id  && !inputValue ? "toggle-genre" : ""}/>
+                return <Button key={crypto.randomUUID()} name={genre.name} link="/movies" genreId={genre.id} backGroundColor={genreValue === genre?.id  && !inputValue ? "toggle-genre" : ""}/>
             })}
             </div>
         </section>
