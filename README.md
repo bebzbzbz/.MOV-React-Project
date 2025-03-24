@@ -1,5 +1,11 @@
 # .MOV Team-Projekt
 
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+    <img style="width: 30%; height: auto; object-fit: contain" src="./public/images/Home.png">
+    <img style="width: 30%; height: auto; object-fit: contain"  src="./public/images/List.png">
+    <img style="width: 30%; height: auto; object-fit: contain"  src="./public/images/Detail.png">
+</div>
+
 
 Das ".MOV Projekt" bietet eine interaktive Filmplattform, die es ermöglicht, Filme anzuzeigen, nach ihnen zu suchen und detaillierte Informationen zu jedem Film abzurufen. Die Anwendung nutzt eine öffentliche [API](https://developer.themoviedb.org/reference/intro/getting-started), um Filme anzuzeigen, und umfasst Funktionen wie einen Slider für aktuelle Trendfilme, eine Suchleiste und eine detaillierte Ansicht jedes Films. Die Benutzer können auch zwischen verschiedenen Genres navigieren und eine Liste von Filmen anzeigen lassen, die nach Genre kategorisiert sind.
 
