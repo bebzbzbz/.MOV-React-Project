@@ -107,7 +107,7 @@ Das Design des Projekts basiert auf einer Figma-Vorlage, die als Grundlage für 
 ## Deployment
 
 Hier gelangst du direkt zur Webseite
-- [.MOV Team Projekt](https://pokemon-api-duo-project.vercel.app/)
+- [.MOV Team Projekt](https://mov-react-project.vercel.app/)
 
 
 

@@ -94,7 +94,7 @@ const SearchBar = () => {
                 {/* auf sonstigen seiten inputfeld mit suchfunktion */}
                 {!homePage && <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch} value={inputValue}/>}
                 <img
-                src="../../public/images/Vector.png"
+                src="/images/Vector.png"
                 alt="Icon"
                 className={`absolute right-3 top-3 transform`}
                 />
