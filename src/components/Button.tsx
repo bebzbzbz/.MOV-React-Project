@@ -10,7 +10,7 @@ const Button = ({name, link, backGroundColor, style, genreId}: IButtonProps) => 
     const {setInputValue, setSearchBoolean} = useContext(mainContext) as any
 
     return ( 
-        <Link className={`${backGroundColor} ${style} rounded-full bg-light-grey py-2 px-4 text-nowrap`} to={link} onClick={() => {setInputValue(""); setPage(1); setSearchBoolean(false); setGenreValue(genreId)}}>{name}</Link>
+        <Link className={`${backGroundColor} ${style} rounded-full bg-light-grey py-2 px-4 text-nowrap`} to={link} onClick={() => {setInputValue(""); setPage(1); setSearchBoolean(false); setGenreValue(genreId || 0)}}>{name}</Link>
 );
 }
 
