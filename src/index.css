@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-    --color-main-red: #FC2121;
+    /* --color-main: #FC2121; */
+    --color-main: #00ba80;
     --color-light-grey: #FBF8FF;
     --color-medium-grey: #A4A3A3;
     --color-blue-grey: #97AABD;
@@ -68,7 +69,7 @@ h1, h2, h3, nav, .splashscreen {
 
 /* toggle Klasse für Genre Buttons */
 .toggle-genre {
-    background-color: #FC2121;
+    background-color: var(--color-main);
     color: white;
 }
 

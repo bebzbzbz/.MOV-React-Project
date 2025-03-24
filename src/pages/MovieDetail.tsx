@@ -69,7 +69,7 @@ const MovieDetail = () => {
                     <p>{movieItem.overview.length > 110 && !showOverview ?
                     movieItem.overview.slice(0,110) + "..."
                     : movieItem.overview}
-                    {movieItem.overview.length > 110 && <a onClick={toggleOverview} className="text-main-red cursor-pointer">{showOverview ? " See less..." : " See more..."}</a>
+                    {movieItem.overview.length > 110 && <a onClick={toggleOverview} className="text-main cursor-pointer">{showOverview ? " See less..." : " See more..."}</a>
                 }
                     </p>
                 </article>
@@ -85,7 +85,7 @@ const MovieDetail = () => {
                 </article>
                 <div className="flex justify-center lg:justify-start">
                     <Link to={`/${movieParam}/trailer`}>
-                        <button className="bg-main-red flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
+                        <button className="bg-main flex justify-center items-center text-white py-3 px-5 rounded-lg "><img className="mr-5" src="/images/playIcon.svg" alt="Play-Button" />Watch Trailer</button>
                     </Link>
                 </div>
             </section>

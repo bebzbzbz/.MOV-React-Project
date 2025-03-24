@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState} from "react";
+import { useContext, useEffect, useRef} from "react";
 import Button from "./Button";
 import { mainContext } from "../context/MainProvider";
 import { IGenre, ISearchBarFetchContext, ISetGenreContext} from "../interfaces/interfaces";
@@ -11,7 +11,9 @@ const SearchBar = () => {
     const {movieGenreList, setMovieGenreList, setMovieDataList, page, setPage} = useContext(mainContext) as ISearchBarFetchContext
 
     // genreValue wird unten durch button klick gesettet
-    const {genreValue, setGenreValue} = useContext(mainContext) as ISetGenreContext
+    const {genreValue} = useContext(mainContext) as ISetGenreContext
+
+    const {inputValue, setInputValue, setSearchBoolean, searchBoolean} = useContext(mainContext) as any
 
     //fetch Block für die einzelnen Genres, über deren ID man dann wieder die Liste "aller" Filme zu entsprechenden Genres fetchen mit Hilfe von useParams()
     const options = {
@@ -41,11 +43,13 @@ const SearchBar = () => {
 
         //Zugriff aufs InputFeld
         const movieByTitleSearch = useRef<HTMLInputElement>(null)
-        const [inputValue, setInputValue] = useState<string | undefined>("")
     
         const handleInput = () => {
-            setPage(1)
-            setInputValue(movieByTitleSearch.current?.value)
+            setSearchBoolean(true)
+            if(searchBoolean) {
+                setPage(1)
+                setInputValue(movieByTitleSearch.current?.value)
+            }
         }
 
     //fetch für Input (query ist Endpunkt, um nach Filmtiteln zu suchen)
@@ -84,12 +88,11 @@ const SearchBar = () => {
             <div className="relative">
                 {/* nur auf home-seite inputfeld mit klickfunktion anzeigen
                 genreValue wird auf 1 gesetzt, damit die popular movies gefetcht werden können (in allMovies wird 1 zu "" übersetzt) */}
-                {homePage && <input type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." onClick={() => {navigate("/movies"); setGenreValue(1)}}/>
+                {homePage && <input type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." onClick={() => {navigate("/movies")}}/>
                 }
 
                 {/* auf sonstigen seiten inputfeld mit suchfunktion */}
-                {!homePage && <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch}/>
-            }
+                {!homePage && <input onChange={handleInput} type="text" className="bg-light-grey w-full rounded-lg px-5 py-3" placeholder="Search Movie..." ref={movieByTitleSearch} value={inputValue}/>}
                 <img
                 src="../../public/images/Vector.png"
                 alt="Icon"

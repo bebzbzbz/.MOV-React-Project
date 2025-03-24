@@ -9,7 +9,7 @@ const Home = () => {
 
     //useState aus Mainprovider für slider
     const {movieDataList, setMovieDataList} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
-    const {setPage, setGenreValue} = useContext(mainContext) as any
+    const {setPage, setGenreValue, setSearchBoolean} = useContext(mainContext) as any
     
     //fetch für slider
     const options = {
@@ -41,6 +41,9 @@ const Home = () => {
             }
         }
         fetchData()
+        setGenreValue(1);
+        setPage(1)
+        setSearchBoolean(false)
     }, [])
 
     return ( 
@@ -49,7 +52,7 @@ const Home = () => {
         <SearchBar/>
             <article className="flex flex-row justify-between items-center pb-5">
                 <p className="font-bold text-xl">Trending Movies</p>
-                <Link to={"/movies"} className="text-main-red" onClick={() => {setPage(1); setGenreValue(1)}}>See all</Link>
+                <Link to={"/movies"} className="text-main">See all</Link>
             </article>
             {/* Slider mit trending/popular movies aus daisyUI */}
             <article className="w-full flex justify-center pb-3">

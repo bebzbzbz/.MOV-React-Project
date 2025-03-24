@@ -11,6 +11,7 @@ const AllMovies = () => {
     //useState aus MainProvider
     const {movieDataList, setMovieDataList, page} = useContext(mainContext) as IFetchAllMoviesAndGenreContext
     const {genreValue} = useContext(mainContext) as ISetGenreContext
+    const {searchBoolean} = useContext(mainContext) as any
 
     //Fetch Block für Popular movies
     const options = {
@@ -30,6 +31,7 @@ const AllMovies = () => {
         }
     };
     
+    if(!searchBoolean) {
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -45,7 +47,7 @@ const AllMovies = () => {
         fetchData()
     }, [page, genreValue])
     // der useEffect wird neu ausgeführt, wenn sich die Variablen page und genreValue verändern
-
+}
 
     //Über Daten fetchen und MovieItem.tsx returnen mit entsprechenden Props, um in MovieItem mit ID zu fetchen
     return ( 
