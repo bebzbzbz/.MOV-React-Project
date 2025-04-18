@@ -48,7 +48,7 @@ Navigation:
 - An always visible navigation bar at the bottom of the screen with a home button that takes the user to the homepage at any time.
 - Back button on the detailed view and on the trailer
 
-### Teamarbeit
+### Teamwork
 This project was carried out as a team effort. We communicated regularly via Discord to distribute tasks, discuss progress and coordinate development progress. In addition, we used FigJam to visualise our tasks and distribute them. Using Git as a version control tool, we made sure that all changes were merged, pushed and pulled to ensure a smooth process.
 
 ## Tech Stack
